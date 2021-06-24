@@ -6,21 +6,20 @@ object SweetTreat extends App {
   val listOfCourier= List(Bobby, Martin, Geoff )
   val order1 = Order(10, 3.0, true)
 
-  def selectTheCourier(order:Order, courier:Courier):Boolean={
-    val isCourierAvailable = readyCourier(courier.time, order.time)
+  def checkCourierCriteria(order:Order, courier:Courier):Boolean={
+    val isCourierAvailable = availableCourier(courier.time, order.time)
     val isDistanceAvailable = availableDistance(courier.distance, order.distance)
     val isRefrigeratorAvailable = availableRefrigerator(courier.hasRefrigerator, order.needRefrigerator)
     isCourierAvailable && isDistanceAvailable && isRefrigeratorAvailable
   }
 
-  def selectTheCheapestCourier(list:List[Courier]=listOfCourier, order:Order = order1):Courier={
-    val filteredList = list.filter(x => selectTheCourier(order, x))
-    if (filteredList.length == 1) filteredList.head
+  def selectTheCheapestCourier(list:List[Courier]=listOfCourier, order:Order = order1):Option[Courier]={
+    val filteredList = list.filter(x => checkCourierCriteria(order, x))
+    if (filteredList.length == 1) Some(filteredList.head)
     else smallestCost(filteredList)
   }
-  // println(" selectTheCheapestCourier is" + selectTheCheapestCourier (List(Bobby, Martin, Geoff ),Order(11, 4.0, true) ) )
 
-  def readyCourier(time:List[Int], orderTime:Int):Boolean={
+  def availableCourier(time:List[Int], orderTime:Int):Boolean={
     val range = time(0) to time(1)
     range.contains(orderTime)
   }
@@ -33,10 +32,9 @@ object SweetTreat extends App {
     if (!needRefrigerator) true else hasRefrigerator
   }
 
-  def smallestCost(courier:List[Courier]):Courier={
-     val oneCourier= courier.minBy(_.chargePerMile)
-    println(" oneCourier is " +  oneCourier)
-    oneCourier
+  def smallestCost(courier:List[Courier]):Option[Courier]={
+    if(courier.length > 0)  Some(courier.minBy(_.chargePerMile))
+    else None
   }
 
 }

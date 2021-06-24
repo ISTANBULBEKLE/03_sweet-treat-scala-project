@@ -1,6 +1,11 @@
-[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SweetTreatTest, org.scalatest.tools.Framework$$anon$1@43307e55, false, [SuiteSelector])[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(SweetTreatTest, org.scalatest.tools.Framework$$anon$1@4e767728, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mSweetTreatTest:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32mreadyCourier method in SweetTreat.scala[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mcheckCourierCriteria method in SweetTreat.scala[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  should gives the valid couriers[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - when all three methods are satisfied[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  should gives the invalid couriers[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - when all three methods are not satisfied[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mavailableCourier method in SweetTreat.scala[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m  should gives the valid range[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m  - when the range is between 9-13 is true[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m  should gives the invalid range[0m[0m
@@ -17,11 +22,18 @@
 [0m[[0m[0minfo[0m] [0m[0m[32m  - when the Order.needRefrigerator is not valid, returns false[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32msmallestCost method in SweetTreat.scala[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32m  should give the valid cost[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m  - when the ListOfCourier is valid, returns true[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 2 seconds, 97 milliseconds.[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 7[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - when the ListOfCourier is valid, returns Some(Courier)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  should give the invalid cost[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - when the ListOfCourier is not valid, returns None[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mselectTheCheapestCourier method in SweetTreat.scala[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  should give the cheapest courier[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - when the list of courier is equal or more than 1[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  should give invalid order[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m  - when the list of courier is not valid[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 2 seconds, 236 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 12[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 1, aborted 0[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 7, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 12, failed 0, canceled 0, ignored 0, pending 0[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	SweetTreatTest[0m
