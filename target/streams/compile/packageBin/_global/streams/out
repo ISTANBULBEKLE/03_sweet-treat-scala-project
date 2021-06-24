@@ -1,0 +1,17 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/hello-world_2.13-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Courier.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/classes/Courier.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SweetTreat.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/classes/SweetTreat.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Order.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/classes/Order.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Order$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/classes/Order$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SweetTreat$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/classes/SweetTreat$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SweetTreat$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/classes/SweetTreat$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Courier$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/target/scala-2.13/classes/Courier$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

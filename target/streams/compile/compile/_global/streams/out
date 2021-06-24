@@ -1,0 +1,11 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/src/main/scala/SweetTreat.scala:7:3: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: String[0m
+[0m[[0m[31merror[0m] [0m[0m  }[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ekipkalir/00_EK_Capgemini_Business/scala_projects/sweet-treat-scala-project/src/main/scala/SweetTreat.scala:14:66: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
+[0m[[0m[31merror[0m] [0m[0m required: Boolean[0m
+[0m[[0m[31merror[0m] [0m[0m  def availableDistance(distance:Int, orderDistance:Int):Boolean={[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
