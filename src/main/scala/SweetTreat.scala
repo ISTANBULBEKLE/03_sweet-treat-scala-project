@@ -1,8 +1,8 @@
 object SweetTreat extends App {
 
-  val Bobby = Courier("Booby", List(9,13), true, 5, 1.75)
-  val Martin = Courier("Martin", List(9,17), false, 3, 1.50)
-  val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0)
+  val Bobby = Courier("Booby", List(9,13), true, 5, 1.75, false)
+  val Martin = Courier("Martin", List(9,17), false, 3, 1.50, false)
+  val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
   val listOfCourier= List(Bobby, Martin, Geoff )
   val order1 = Order(10, 3.0, true)
 
@@ -13,10 +13,35 @@ object SweetTreat extends App {
     isCourierAvailable && isDistanceAvailable && isRefrigeratorAvailable
   }
 
-  def selectTheCheapestCourier(list:List[Courier]=listOfCourier, order:Order = order1):Option[Courier]={
+//  def selectCheapestCourier(courierList: List[Courier] = listOfCourier, order: Order = order1): Option[Courier] ={
+//    val filteredList = courierList.filter(x => checkCourierCriteria(order, x))
+//
+//
+//    val listToTuples = filteredList.map(x => (x.name, x.chargePerMile * order.distance))
+//
+//
+//    val listWithTotalCostPerOrder = generateListWithTotalCostPerOrder(filteredList, order)
+//    val preferredCourier = listWithTotalCostPerOrder.filter(_.preferredCourier).sortBy(_.chargePerMile)
+//    val priceDifference = if(listWithTotalCostPerOrder.nonEmpty && preferredCourier.nonEmpty) preferredCourier.head.chargePerMile - listWithTotalCostPerOrder.head.chargePerMile
+//    else 100
+//    if(priceDifference < 1 && preferredCourier.nonEmpty) Some(preferredCourier.head)
+//    else if(listWithTotalCostPerOrder.nonEmpty) Some(listWithTotalCostPerOrder.head)
+//    else None
+//  }
+
+  def selectTheCheapestCourier(list: List[Courier] = listOfCourier, order: Order = order1): Option[Courier]={
     val filteredList = list.filter(x => checkCourierCriteria(order, x))
-    if (filteredList.length == 1) Some(filteredList.head)
-    else smallestCost(filteredList)
+    val preferredCourier = smallestCost(filteredList.filter(_.preferredCourier))
+    val cheapestCourier = smallestCost(filteredList)
+    println("preferredCourier" + preferredCourier)
+    println("cheapestCourier" + cheapestCourier)
+    val a = preferredCourier.getOrElse(-1)
+    val b = cheapestCourier.getOrElse(-1)
+    val priceDifference = if(a != -1 && b != -1) (preferredCourier.get.chargePerMile * order.distance) - (cheapestCourier.get.chargePerMile * order.distance)
+    else 2
+    if(priceDifference < 1 ) Some(preferredCourier.head)
+    else if(cheapestCourier.nonEmpty) Some(cheapestCourier.head)
+    else None
   }
 
   def availableCourier(time:List[Int], orderTime:Int):Boolean={
@@ -33,13 +58,32 @@ object SweetTreat extends App {
   }
 
   def smallestCost(courier:List[Courier]):Option[Courier]={
-    if(courier.length > 0)  Some(courier.minBy(_.chargePerMile))
+    if(courier.nonEmpty)  Some(courier.minBy(_.chargePerMile))
     else None
   }
 
+  def availableCouriersOrderedByPrice(courierList: List[Courier], order:Order):List[Courier]={
+    val filteredList = courierList.filter(x => checkCourierCriteria(order, x))
+    filteredList.sortBy(_.chargePerMile)
+  }
+
+  def generateListWithTotalCostPerOrder(list: List[Courier], order: Order): List[Courier] = {
+    list.map(x =>
+      Courier(x.name, x.time, x.hasRefrigerator, x.distance, x.chargePerMile * order.distance, x.preferredCourier)
+    ).sortBy(_.chargePerMile)
+  }
+
+//  def cheapestPreferredCourier(couriersList: List[Courier], order: Order): Option[Courier] = {
+//    val filteredList = couriersList.filter(x => checkCourierCriteria(order, x))
+//    val listWithTotalCostPerOrder = generateListWithTotalCostPerOrder(filteredList, order)
+//    val preferredCourier = listWithTotalCostPerOrder.filter(_.preferredCourier).sortBy(_.chargePerMile)
+//    if((preferredCourier.head.chargePerMile - listWithTotalCostPerOrder.head.chargePerMile) < 1) Some(preferredCourier.head)
+//    else Some(listWithTotalCostPerOrder.head)
+//  }
+
 }
 
-  case class Courier (name:String, time:List[Int], hasRefrigerator:Boolean, distance:Double, chargePerMile:Double)
+  case class Courier (name:String, time:List[Int], hasRefrigerator:Boolean, distance:Double, chargePerMile:Double, preferredCourier:Boolean)
   case class Order(time:Int, distance:Double, needRefrigerator:Boolean)
 
 

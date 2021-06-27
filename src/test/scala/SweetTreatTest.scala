@@ -5,9 +5,10 @@ import org.scalatestplus.play.guice.GuiceOneAppPerTest
 class SweetTreatTest  extends PlaySpec with GuiceOneAppPerTest {
 
     " checkCourierCriteria method in SweetTreat.scala" should {
-        val Bobby = Courier("Booby", List(9,13), true, 5, 1.75)
-        val Martin = Courier("Martin", List(9,17), false, 3, 1.50)
-        val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0)
+        val Bobby = Courier("Booby", List(9,13), true, 5, 1.75, false)
+        val Martin = Courier("Martin", List(9,17), false, 3, 1.50, false)
+        val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
+
         val order1 = Order(10, 3.0, true)
 
         "gives the valid couriers" when{
@@ -17,7 +18,6 @@ class SweetTreatTest  extends PlaySpec with GuiceOneAppPerTest {
         }
         "gives the invalid couriers" when{
             val order1 = Order(10, 8.0, true)
-
             "all three methods are not satisfied" in{
                 SweetTreat.checkCourierCriteria(order1, Martin) mustBe false
             }
@@ -65,9 +65,9 @@ class SweetTreatTest  extends PlaySpec with GuiceOneAppPerTest {
     }
 
     " smallestCost method in SweetTreat.scala" should {
-        val Bobby = Courier("Booby", List(9,13), true, 5, 1.75)
-        val Martin = Courier("Martin", List(9,17), false, 3, 1.50)
-        val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0)
+        val Bobby = Courier("Booby", List(9,13), true, 5, 1.75, false)
+        val Martin = Courier("Martin", List(9,17), false, 3, 1.50, false)
+        val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
 
         "give the valid cost" when{
             "the ListOfCourier is valid, returns Some(Courier)" in{
@@ -84,13 +84,13 @@ class SweetTreatTest  extends PlaySpec with GuiceOneAppPerTest {
 
     "selectTheCheapestCourier method in SweetTreat.scala" should {
         val order1 = Order(10, 3.0, true)
-        val Bobby = Courier("Booby", List(9,13), true, 5, 1.75)
-        val Martin = Courier("Martin", List(9,17), false, 3, 1.50)
-        val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0)
+        val Bobby = Courier("Booby", List(9,13), true, 5, 1.75, false)
+        val Martin = Courier("Martin", List(9,17), true, 3, 1.50, false)
+        val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
 
         "give the cheapest courier" when{
             "the list of courier is equal or more than 1" in{
-                SweetTreat.selectTheCheapestCourier(List(Bobby, Martin, Geoff ), order1) mustBe Some(Bobby)
+                SweetTreat.selectTheCheapestCourier(List(Bobby, Martin, Geoff ), order1) mustBe Some(Martin)
             }
         }
         "give invalid order" when{
@@ -101,5 +101,56 @@ class SweetTreatTest  extends PlaySpec with GuiceOneAppPerTest {
         }
     }
 
+    ////////////Part II
+
+    "availableCouriersOrderedByPrice method in SweetTreat.scala" should {
+        "give a list of couriers sorted by cheapest to expensive" when{
+
+            val Bobby = Courier("Booby", List(9,13), true, 5, 1.75, false)
+            val Martin = Courier("Martin", List(9,17), false, 3, 1.50, false)
+            val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
+            val order1 = Order(11, 2.0, false)
+
+            "return an ordered list of available couriers" in{
+                SweetTreat.availableCouriersOrderedByPrice(List(Bobby, Martin, Geoff), order1) mustBe List(Martin, Bobby, Geoff)
+            }
+        }
+
+        "give invalid courier List" when{
+            val Bobby1 = Courier("Booby", List(5,9), true, 5, 1.75, false)
+            val Martin1 = Courier("Martin", List(9,17), false, 3, 1.50, false)
+            val Geoff1 =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
+            val order2 = Order(11, 10, false)
+
+            "return an empty list" in{
+                SweetTreat.availableCouriersOrderedByPrice(List(Bobby1, Martin1, Geoff1), order2) mustBe List()
+            }
+        }
+    }
+//
+//    "cheapestPreferredCourier method in SweetTreat.scala" should {
+//        "give a list of total cost couriers sorted by cheapest to expensive " when{
+//
+//            val Bobby = Courier("Booby", List(9,13), true, 5, 1.75, false)
+//            val Martin = Courier("Martin", List(9,17), false, 3, 1.50, false)
+//            val Geoff =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
+//            val order1 = Order(11, 2.0, false)
+//
+//            "return an ordered list of available couriers" in{
+//                SweetTreat.cheapestPreferredCourier(List(Bobby, Martin, Geoff), order1) mustBe List(Martin, Bobby, Geoff)
+//            }
+//        }
+//
+//        "give invalid courier List" when{
+//            val Bobby1 = Courier("Booby", List(5,9), true, 5, 1.75, false)
+//            val Martin1 = Courier("Martin", List(9,17), false, 3, 1.50, false)
+//            val Geoff1 =  Courier("Geoff",List(10,16), true, 4, 2.0, true)
+//            val order2 = Order(11, 10, false)
+//
+//            "return an empty list" in{
+//                SweetTreat.cheapestPreferredCourier(List(Bobby1, Martin1, Geoff1), order2) mustBe List()
+//            }
+//        }
+//    }
 
 }
